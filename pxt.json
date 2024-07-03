@@ -1,5 +1,5 @@
 {
-    "name": "makecode-show-trailer-whew SAVE-2 Jul 21:41",
+    "name": "makecode-show-trailer-whew SAVE-2 Jul 22:19",
     "description": "",
     "dependencies": {
         "device": "*",
@@ -8,7 +8,9 @@
         "animation": "*",
         "pxt-zoom": "github:kiwiphoenix364/pxt-zoom#v2.0.1",
         "Color Fading": "github:jwunderl/pxt-color#v0.2.3",
-        "pxt-rtttl": "github:pelikhan/pxt-rtttl#v0.0.12"
+        "pxt-rtttl": "github:pelikhan/pxt-rtttl#v0.0.12",
+        "Timers": "github:microsoft/arcade-timers#v1.1.0",
+        "arcade-story": "github:microsoft/arcade-storytelling#v1.0.3"
     },
     "files": [
         "main.blocks",
