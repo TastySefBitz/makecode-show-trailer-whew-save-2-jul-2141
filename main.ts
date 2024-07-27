@@ -39,16 +39,40 @@ function bigtext (color2: number, text: string, animate: boolean) {
 // 13-tan
 // 14-brown
 // 15-black
-function narrate (text: string, color2: number) {
-    myTextSprite2 = fancyText.create(text, 150, color2, fancyText.art_deco_11)
-    myTextSprite2.setPosition(-65, 15)
-    myTextSprite2.setKind(SpriteKind.Enemy)
-    animation.runMovementAnimation(
-    myTextSprite2,
-    "h 140",
-    2000,
-    false
-    )
+function narrate (text: string, color2: number, imovie_effect_thing: boolean, _2color: number) {
+    if (imovie_effect_thing) {
+        for (let index = 0; index < 2; index++) {
+            myTextSprite2 = fancyText.create(text, 150, color2, fancyText.art_deco_11)
+            myTextSprite2.setPosition(-65, 15)
+            myTextSprite2.setKind(SpriteKind.Enemy)
+            animation.runMovementAnimation(
+            myTextSprite2,
+            "h 140",
+            2000,
+            false
+            )
+            pause(100)
+            myTextSprite2 = fancyText.create(text, 150, _2color, fancyText.art_deco_11)
+            myTextSprite2.setPosition(-65, 15)
+            myTextSprite2.setKind(SpriteKind.Enemy)
+            animation.runMovementAnimation(
+            myTextSprite2,
+            "h 140",
+            2000,
+            false
+            )
+        }
+    } else {
+        myTextSprite2 = fancyText.create(text, 150, color2, fancyText.art_deco_11)
+        myTextSprite2.setPosition(-65, 15)
+        myTextSprite2.setKind(SpriteKind.Enemy)
+        animation.runMovementAnimation(
+        myTextSprite2,
+        "h 140",
+        2000,
+        false
+        )
+    }
 }
 function dialouge (sprite: Sprite, say: string, donttalk: Sprite) {
     donttalk.sayText("")
@@ -133,6 +157,9 @@ function screen_text (theText: string, Pfp: Image) {
     myTextSprite = fancyText.create(theText, 125, 1)
     myTextSprite.setKind(SpriteKind.Player)
 }
+/**
+ * CREDITS         ART: Head Artist: Luke(Richard, Luke)     Converted Images: https://kristianpedersen.github.io/Convert-Image-to-MakeCode-Arcade-Sprite/     TV image: ShutterStock 1502125139          MUSIC: Head of Music: InvaildProject(Fossil Falls)     Mission Impossible RTTTL: https://github.com/dhylands/upy-rtttl/blob/master/songs.py           EXTENSIONS: Fancy Text by ricknoll     pxt-zoom by kiwiphoenix364               FEEDBACK: FutureKnight12
+ */
 let myTextSprite: fancyText.TextSprite = null
 let mySprite4: Sprite = null
 let myTextSprite4: fancyText.TextSprite = null
@@ -144,22 +171,22 @@ timer.background(function () {
 })
 scene.setBackgroundColor(14)
 let mySprite = sprites.create(img`
-    . . . b b b b b b b b b . . . . 
-    . . b 1 d d d d d d d 1 b . . . 
-    . b 1 1 1 1 1 1 1 1 1 1 1 b . . 
-    . b d b c c c c c c c b d b . . 
-    . b d c 6 6 6 6 6 6 6 c d b . . 
-    . b d c 6 d 6 6 6 6 6 c d b . . 
-    . b d c 6 6 6 6 6 6 6 c d b . . 
-    . b d c 6 6 6 6 6 6 6 c d b . . 
-    . b d c 6 6 6 6 6 6 6 c d b . . 
-    . b d c c c c c c c c c d b . . 
-    . c b b b b b b b b b b b c . . 
-    c b c c c c c c c c c c c b c . 
-    c 1 d d d d d d d d d d d 1 c . 
-    c 1 d 1 1 d 1 1 d 1 1 d 1 1 c . 
-    c b b b b b b b b b b b b b c . 
-    c c c c c c c c c c c c c c c . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . f f f f f f f f f f f f f f . 
+    . f b f b b b b b b b b b b f . 
+    . f b f b 7 7 7 7 7 7 7 7 b f . 
+    . f c f c 7 f f f 7 7 f 7 c f . 
+    . f b f b 7 f 7 f 7 f f 7 b f . 
+    . f b f b 7 f 7 f 7 7 f 7 b f . 
+    . f c f c 7 f f f 7 7 f 7 c f . 
+    . f b f b 7 7 7 7 7 7 7 7 b f . 
+    . f b f b b b b b b b b b b f . 
+    . f f f f f f f f f f f f f f . 
+    . . . f b b f c c c c f . . . . 
+    . . f b b f c c c c c c f . . . 
+    . . f f f f f f f f f f f . . . 
+    . . . . . . . . . . . . . . . . 
     `, SpriteKind.Player)
 mySprite.setPosition(29, 99)
 dialouge(mySprite, "haiii im sarge!!!", mySprite)
@@ -229,30 +256,26 @@ mySprite5.z = 5
 mySprite5.setVelocity(150, 150)
 rotate(mySprite5, 100)
 scene.setBackgroundColor(0)
-for (let index = 0; index < 2; index++) {
-    narrate("Coming Soon...", 2)
-    pause(100)
-    narrate("Coming Soon...", 3)
-}
+narrate("Coming Soon...", 2, true, 3)
 pause(3000)
 sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
-narrate("Featuring Makecoders from around the world", 8)
+narrate("Featuring Makecoders from around the world", 8, false, 1)
 let mySprite6 = sprites.create(img`
-    ff1111111111111111feeeeeeeeeeeeeee1f9999ebeee999999f11111eeee111111f1ffc4555eefffeeff1f999999999999999ff1fffffffff888ffff1fffffffffffffffff1111111d5d1111111dddddddddf5fdddf1cccccccccccccccff11111111d1111111ffff
-    ff1111cc88f1111111feeeeefffeeefeee1f999e77e7eeeb999f1111eeeeee11111f1ffee44eeeeeeefff1f999999999999999ff1fffffffff888ffff1fffffffffffffffff11111155555111111dddddddccfc5fcdf1cccccccccccccccff111111111d111111ffff
-    ff111ffffffd111111fee2ef8ffeeeeeee1f999feeeeeec7f99f111eeeeeeee1111f1eeeeeeee44eeefcf1f999999999999999ff1fffffffff888ffff1fffffffffffffffff11111d55555d11111bddbddddfffffcbf1cccccccfffcccccff111111111d111111ffff
-    ff118ffccccfff1111feeefe45ceeeeeee1f9bcc77eec7e7eb9f11eeeeeeeeee111f1ee4e4eeeeeeeffcf1f999ffffffff9999ff1fff888888888888f1fffffffffffffffff11111185551111111ddddbbfb4558dddf1ccccccffffffcccff111111ddb881d111ffff
-    ffcffccc77cc111111ffe8fe88fff2eeef1fb77ee7eceee7e79f1effeeeeeeffe11f1fe4e4ee4eeeeffcf1f999fcdffffb6999ff1fff888888888888f1fffffffdddddcffff1111116666b111111ddddbfffe55c96df1ccccccffeefffccff111111dc68f1d111ffff
-    ff111ddccccc811111fffeef8ffeefeeef1fe777eeeeeeeee7dfeee1feeeef1eee1f1fc4e4ee4e4effccf1f99bdcddbb7bd999ff1fff888888888888f1ffffffbdddddbbfff111bf966cfb111111ddddfff55e5d768f1cccccff4fbdffccff111111c88dbc1111ffff
-    ff111c8ccccccf1111fefefeeffee2feff1fceeffefeeee7e7dfeee1ffffff1eee1f1cc44ee4ee4effccf1f99bede7c7bcbb99ff1fff777fff888ffff1fffffbbbbbbbbbcff111cffffcfff11111ddcffffeeffd968f1cccccffbfb4fcccff11111cc811d1c111ffff
-    ff111ccbbcc8881111fe8feeefffeef8ee1fbee7e7e7e7eeee9feee1f1ee1f1eeeef1ccc44eee4efffccf1f9bdebc666eeebb9ff1fff777fff888ffff1fffffccbbcbbcbbff11cff1c11dcf11111bdffffe5efff54bf1ccccccfbf4bfcccff11111ccbd1111111ffff
-    ff11111bbcc88cf111feefeeeffffeeeee1fe77eefefeeecec9feee111ee111eeeef1ccf444442c88ffff1f9beeecfcfceee99ff1fff777fff888ffff1ffffffbbbb33dbfff111fdfcc1fff11111dfffff555fbf54df1cccccccffffccccff111dccdcc1c11111ffff
-    ff11111666688cff11feeeeffffffeeeee1feeee97777cfcb99feeeeeeeeeeeeeeef1ccbf44444fffffff1f9beefffffffeeb9ff1fff777fff888ffff1fffffffccccccffff11bffbbbbbfc11111dfffffe9ffcd66df1cccccccf88fccccff111d8cfccd111111ffff
-    ff11188666accbff11feeefffffffeeeee1f9ffff77777fce99feeeeddddddeeee1f1bcfbfcccfbbfffff1f9ebfffffffceb99ff1fff777fff888ffff1ffffffffcfccfffff1111cfbbffb111111dfcfff88ffffdbbf1cccccccf88fccccff111d111db11d1111ffff
-    ff1188faaaafbfff11feeeffeeffffeeee1f99d7f7777e7fc99f111dddddddd1111f1ffcfcbbbbfcfffcf1fdfffffffffffb99ff1fff777777777ffff1fffffffffbbffffff11111bfc691111111d56888dfffffdddf1cccccccf888ccccff1111111d111d1111ffff
-    ff1118816dddbff111feeeeffeefffeeee1f99977f77fed9999f1ffddddddddff11f1fcfccc8ccfffffff1ffffffffffffcf69ff1fff777777777ffff1fffffffffffffffff1111111c66f111111dd688bdd8ffcdddf1cccccccf888fcccff111111d1db1bd111ffff
-    ff11188d6ddbff1111feeee2feeeff8eee1f999c77ee77f9999ffffffddddfffff1f1ccffffffffccfccf1ffffffffffffffffff1fff777777777ffff1fffffffffffffffff111111c6666111111bd86dddd86dbdddf1cccccccf888fcccff111111d111111111ffff
-    ff1118866dcf111111feeecffeeeeefeee1f999977777799999fffffffddffffff1f1ffbcf88cbfbcfccf1ffffffffffffffffff1ffffffffffffffff1fffffffffffffffff11111111111111111d8f8bddff8bdbddf1cccccccf888fcccff1111111111111111ffff
+    ff1111111111111111feeeeeeeeeeeeeee1f9999ebeee999999f11111eeee111111f1ffc4555eefffeeff1f999999999999999ff1ffffffffffffffff1fffffffffffffffff1111111d5d1111111dddddddddf5fdddf1cccccccccccccccff11111111d1111111ffff
+    ff1111cc88f1111111feeeeefffeeefeee1f999e77e7eeeb999f1111eeeeee11111f1ffee44eeeeeeefff1f999999999999999ff1ffffffffffffffff1fffffffffffffffff11111155555111111dddddddccfc5fcdf1cccccccccccccccff111111111d111111ffff
+    ff111ffffffd111111fee2ef8ffeeeeeee1f999feeeeeec7f99f111eeeeeeee1111f1eeeeeeee44eeefcf1f999999999999999ff1ffffffffffffffff1fffffffffffffffff11111d55555d11111bddbddddfffffcbf1cccccccfffcccccff111111111d111111ffff
+    ff118ffccccfff1111feeefe45ceeeeeee1f9bcc77eec7e7eb9f11eeeeeeeeee111f1ee4e4eeeeeeeffcf1f999ffffffff9999ff1ffff7777777fffff1fffffffffffffffff11111185551111111ddddbbfb4558dddf1ccccccffffffcccff111111ddb881d111ffff
+    ffcffccc77cc111111ffe8fe88fff2eeef1fb77ee7eceee7e79f1effeeeeeeffe11f1fe4e4ee4eeeeffcf1f999fcdffffb6999ff1ffff7777777fffff1fffffffdddddcffff1111116666b111111ddddbfffe55c96df1ccccccffeefffccff111111dc68f1d111ffff
+    ff111ddccccc811111fffeef8ffeefeeef1fe777eeeeeeeee7dfeee1feeeef1eee1f1fc4e4ee4e4effccf1f99bdcddbb7bd999ff1ffff7777777fffff1ffffffbdddddbbfff111bf966cfb111111ddddfff55e5d768f1cccccff4fbdffccff111111c88dbc1111ffff
+    ff111c8ccccccf1111fefefeeffee2feff1fceeffefeeee7e7dfeee1ffffff1eee1f1cc44ee4ee4effccf1f99bede7c7bcbb99ff1f888ffff777fffff1fffffbbbbbbbbbcff111cffffcfff11111ddcffffeeffd968f1cccccffbfb4fcccff11111cc811d1c111ffff
+    ff111ccbbcc8881111fe8feeefffeef8ee1fbee7e7e7e7eeee9feee1f1ee1f1eeeef1ccc44eee4efffccf1f9bdebc666eeebb9ff1f888ffff777fffff1fffffccbbcbbcbbff11cff1c11dcf11111bdffffe5efff54bf1ccccccfbf4bfcccff11111ccbd1111111ffff
+    ff11111bbcc88cf111feefeeeffffeeeee1fe77eefefeeecec9feee111ee111eeeef1ccf444442c88ffff1f9beeecfcfceee99ff1f888ffff777fffff1ffffffbbbb33dbfff111fdfcc1fff11111dfffff555fbf54df1cccccccffffccccff111dccdcc1c11111ffff
+    ff11111666688cff11feeeeffffffeeeee1feeee97777cfcb99feeeeeeeeeeeeeeef1ccbf44444fffffff1f9beefffffffeeb9ff1f888ffff777fffff1fffffffccccccffff11bffbbbbbfc11111dfffffe9ffcd66df1cccccccf88fccccff111d8cfccd111111ffff
+    ff11188666accbff11feeefffffffeeeee1f9ffff77777fce99feeeeddddddeeee1f1bcfbfcccfbbfffff1f9ebfffffffceb99ff1f8888888777888ff1ffffffffcfccfffff1111cfbbffb111111dfcfff88ffffdbbf1cccccccf88fccccff111d111db11d1111ffff
+    ff1188faaaafbfff11feeeffeeffffeeee1f99d7f7777e7fc99f111dddddddd1111f1ffcfcbbbbfcfffcf1fdfffffffffffb99ff1f8888888777888ff1fffffffffbbffffff11111bfc691111111d56888dfffffdddf1cccccccf888ccccff1111111d111d1111ffff
+    ff1118816dddbff111feeeeffeefffeeee1f99977f77fed9999f1ffddddddddff11f1fcfccc8ccfffffff1ffffffffffffcf69ff1f8888888777888ff1fffffffffffffffff1111111c66f111111dd688bdd8ffcdddf1cccccccf888fcccff111111d1db1bd111ffff
+    ff11188d6ddbff1111feeee2feeeff8eee1f999c77ee77f9999ffffffddddfffff1f1ccffffffffccfccf1ffffffffffffffffff1ffffffff777fffff1fffffffffffffffff111111c6666111111bd86dddd86dbdddf1cccccccf888fcccff111111d111111111ffff
+    ff1118866dcf111111feeecffeeeeefeee1f999977777799999fffffffddffffff1f1ffbcf88cbfbcfccf1ffffffffffffffffff1ffffffff777fffff1fffffffffffffffff11111111111111111d8f8bddff8bdbddf1cccccccf888fcccff1111111111111111ffff
     ff1111116f11111111feeeffeeeeeeffee1f99999c77c999999f1fffffddfffff11f1ffcfcf8fcfbfffff1ffffffffffffffffff1ffffffffffffffff1fffffffffffffffff11111111111111111dffbdddffddbdddf1cccccccf888fcccff1fffffffffffffffffff
     `, SpriteKind.screen)
 mySprite6.setKind(SpriteKind.Enemy)
@@ -383,36 +406,157 @@ let mySprite7 = sprites.create(img`
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     `, SpriteKind.Projectile)
-narrate("Coming together to make...", 6)
+narrate("Coming together to make...", 6, false, 1)
 pause(4000)
+mySprite7.scale = 1.5
+mySprite7.y += -30
 sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
-Zoom.SetZoomFilterOffset(
-2,
-0,
-30,
-2000
-)
 pause(1000)
-sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
-Zoom.SetZoomFilterOffset(
-1,
-0,
-30
-)
 color.setColor(1, color.parseColorString("#FF10F0"))
 color.setColor(6, color.parseColorString("#808000"))
 bigtext(1, "The Show", true)
 pause(500)
 bodytext("Season 2 starting October 10", 6, false)
+pause(5000)
+sprites.destroyAllSpritesOfKind(SpriteKind.Projectile)
+sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
+scene.setBackgroundImage(img`
+    eeeee2222222222222222222222222222222222ee2222ee2222ee2222222eeeee2222222222222222222222222222222222ee22222eeee222ee2eeeee2222222222222222222222222222222222ee222
+    222eeeee22222222222222222222222222222eee2222eeee2222ee222222222eeeee22222222222222222222222222222eee2222eeeee222ee22222eeeee22222222222222222222222222222eee2222
+    222222eeeeeee222222222222222222222eeee22222eeeeee2222eee2222222222eeeeeee222222222222222222222eeee22222eeee2222ee222222222eeeeeee222222222222222222222eeee22222e
+    222222222eeeeeeeeeeeeee2222222eeeee222222eeee22eee2222eeee22222222222eeeeeeeeeeeeee2222222eeeee222223eeee22222eeee22222222222eeeeeeeeeeeeee2222222eeeee222222eee
+    e222222222222222222222222222eeee2222222eeee22222eef22222eeeee222222222222222222222222222eeee2333333eeee22222efe2eeeee222222222222222222222222222eeee2222222eeee2
+    eeeeeeee22222222222222222222222222222eee2222222eeeefe222222eeeeeeeee22222222222222333333333333322eee2222222efe22222eeeeeeeee22222222222222222222222222222eee2222
+    2222eeeeeeeee222222222222222222222eeee2222222eeeeeeeffe222222222eeeeeeeee222223333333333322222eeee2223322effeee222322222eeeeeeeee222222222222222222222eeee222222
+    2223322222222222222222222222222eeee2222222eeeeeeee222efffe222222222222222222222222222222222eeee2233332efffe22eeeee233333222222222222222222222222222eeee2222222ee
+    2222233332222222222222222222222222222222eeeeeeeee22222eefffe2222222222222222222222222222222233333332efffee22222eeeee2233333333333333333332222222222222222222eeee
+    eeee22233333333333333332222222222222eeeeee222222222eeeee22ffffee22222222223333333333333333333332eeffff22eeeee22222eeeeee23333333333333222222222222222222eeeeeeee
+    eeeeeeeeee233333333332222222222eeeeeee2222222222eeeee2222ffeefffffffee2222222222223333333332fffffffeeff2222eeeee222222eeeeeeee222222222222222222222eeeeeeeeeeeee
+    eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee22eeeeeeee2222eee222222ffeeeeeeeeeeffffffffffffffffffffffffeeeeeeeeeeff222222eee2222eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+    eeeeeeeeeee22222222222222ee22222222222222222222222222effeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffe22222222222222222222222222ee22222222222222eeeeeeeeeee
+    eeeeeeeeee22222222222222222eeee2222222222222222222efffeeeeeeeeeeeeeeeeee2eeeeeeeeeeeeeeeeee2eeeeeeeeeeeeeefffe2222222222222222222eeee22222222222222222eeeeeeeeee
+    eeeeeeeeee222222222222222222eeeeeeee222222222eeefffeeeeeeeeeeeeeeeeeeeee222222eeeeeeeeee2222eeeeeeeeeeeeeeeeefffeee222222222eeeeeeee222222222222222222eeeeeeeeee
+    eeeeeeeee2222222222222222222eeeeeeeeeeeeeeeeffffeeeeeeeeeeeeeeeeeeeeeeee22222222222222222222ee2eeeeeeeeeeeeeeeeeffffeeeeeeeeeeeeeeee2222222222222222222eeeeeeeee
+    eeeeeeeee2222222222222222222ee2222effffffffffffeeeeeeeeeeeeeeeeeeeeeeeee22222222222222222222ee22eeeeeeeeeeeeeeeefffffffffffffe2222ee2222222222222222222eeeeeeeee
+    eeeeeeee22e22222222222222222ee2222eeee2efffffffeeeeeeeeeeeeeeeeeeeee22ee22222222222222222222e222eeeeeeeeeeeeeeeeffffffffe2eeee2222ee22222222222222222e22eeeeeeee
+    eeeeeeee2222222222222222222ee22222ee22eeffffffeeeeeeeeeeeeeeeeeeeeee22ee22222222222222222222e222eeeeeeeeeeeeeeeeffffffffee22ee22222ee2222222222222222222eeeeeeee
+    eeeeeeee2e2222222222222222eee22222ee22efffffffeeeeeeeeeeeeeeeeeeeeee22ee22222222222222222222e222eeeeeeeeeeeeeeeefffffffffe22ee22222eee2222222222222222e2eeeeeeee
+    eeeeeee22e2222222222222222ee222222e22eefffffffeeeeeeeeeeeeeeeeeeeeee22ee22222222222222222222e222eeeeeeeeeeeeeeeefffffffffee22e222222ee2222222222222222e22eeeeeee
+    eeeeeee22e222222222222222ee222222ee22effffffffeeeeeeeeeeeeeeeeee2eee22ee22222222222222222222e222eeee2eeeeeeeeeeeefffffffffe22ee222222ee222222222222222e22eeeeeee
+    eeeeee22e2222222222222222ee222222e22eeffffffffeeeeeeeeeeeeeeeeee2eee22ee22222222222222222222e2222eee2eeeeeeeeeeeefffffffffee22e222222ee2222222222222222e22eeeeee
+    eeeeee22e222222222222222ee222222ee2eeeffffffffeeeeeeeeeeeeeeeeee2ee222e222222222222222222222e2222eee2eeeeeeeeeeeefffffffffe3e2ee222222ee222222222222222e22eeeeee
+    eeeee22ee222222222222222ee22222ee22eefffffffffeeeeeeeeeeeeeeeeee2ee222e2222222222222222222222e222eee2eeeeeeeeeeeeffffffffffe322ee22222ee222222222222222ee22eeeee
+    eeeee22e222222222222222ee222222ee2eeeffffffffeeeeeeeeeeeeeeeeee22ee222e2222222222222222222222e222eee2eeeeeeeeeeeeffffffffffe3e2ee222222ee222222222222222e22eeeee
+    eeee22ee222222222222222e222222ee22eefffffffffeeeeeeeeeeeeeeeeee22ee222e2222222222222222222222e222eee22eeeeeeeeeeeeffffffffffe322ee222222e222222222222222ee22eeee
+    eeee22ee22e22222222222ee22222ee22eeffffffffffeeeeeeeeeeeeeeeeee22ee222e2222222222222222222222e222eeee2eeeeeeeeeeeefffffffffff3322ee22222ee22222222222e22ee22eeee
+    eeee2ee222222222222222e222222ee32eeffffffffffeeeeeeeeeeeeeeeeee22ee222e2222222222222222222222e2222eee2eeeeeeeeeeeefffffffffffe332ee222222e222222222222222ee2eeee
+    eee22ee22e22222222222e222222ee32eeffffffeffffeeeeeeeeeeeeeeeeee22ee222e2222222222222222222222e2222eee2eeeeeeeeeeeeffffffffffff3322ee222222e22222222222e22ee22eee
+    eee2ee222e22222222222e22222ee23eeeffffffeffffeeeeeeeeeeeeeeeeee22ee222e2222222222222222222222e2222eee2eeeeeeeeeeeeffffffffffffe3322ee22222e22222222222e222ee2eee
+    ee22ee22e22222222222e222222ee32eefffffffefffeeeeeeeeeeeeeeeeeee22ee222e2222222222222222222222e2222eee2eeeeeeeeeeeeeffffffffffffe332ee222222e22222222222e22ee22ee
+    ee2eee2ee2222222222e222222ee33eeefffffffefffeefeeeeeeeeeeeeeee222ee22ee2222222222222222222222e2222eee22eeeeeeeeeeeeffffffffffffe3322ee222222e2222222222ee2eee2ee
+    eeeee22ee2222222222e22222ee33eeeffffffffffffeefeeeeeeeeeeeeeee22eee22ee2222222222222222222222e2222eee22eeeeeeeeeeeefffffffffffffe3322ee22222e2222222222ee22eeeee
+    eeeee2ee2222222222222222eee33eeffffffffeffffeefeeeeeeeeeeeeeee22eee22ee2222222222222222222222e2222eee22eeeeeeeeeeeefeffffffffffffe332eee2222222222222222ee2eeeee
+    eeee22ee2222222222222222ee33eeeffffffffeffffeefeeeeeeeeeeeeeee22ee222ee2222222222222222222222e2222eee22eeeeeeeeeeeefeffffefffffffe3332ee2222222222222222ee22eeee
+    eeee2ee2222222222222222ee33eeefffffffffeffffeefeeeeeeeeeeeeeee22ee222e22222222222222222222222e2222eee22eeeeeeeeeeeeeeffffeffffffffe3322ee2222222222222222ee2eeee
+    eeee2ee222222222222222ee333eeffffffffffefffeeeeeeeeeeeeeeeeeee22ee222e22222222222222222222222e2222eee22eeeeeeeeeeeeeeefffefffffffffe3322ee222222222222222ee2eeee
+    eee2ee2222222222222222ee33eeeffffffffffefffeeeeeeeeeeeeeeeeeee22ee222e22222222222222222222222e22222ee22eeeeeeeeeeeeeeefffefffffffffee332ee2222222222222222ee2eee
+    eee2ee222222222222222ee33eeefffffffffffefffeefeeeeeeeeeeeeeeee22ee222e22222222222222222222222ee2222eee2eeeeeeeeeeeeeeefffeffffffffffe3332ee222222222222222ee2eee
+    ee2ee2222222222222222e33eeefffffffffffeefffeefeeeeeeeeeeeeeee222ee222e22222222222222222222222ee2222eee22eeeeeeeeeeeeeeffffeffffffffffe3322e2322222222222222ee2ee
+    ee2ee222222222222232e333eeffffffffffffeefffeefeeeeeeeeeeeeeee22eee222e22222222222222222222222ee2222eee22eeeeeeeeeeeeeeefffefffffffffffe3322e322222222222222ee2ee
+    e2ee2222222222222322e33eeeffffffffffffeefffeefeeeeeeeeeeeeeee22ee2222e22222222222222222222222ee2222eee22eeeeeeeeeeeeeeefffefffffffffffee332e2322222222222222ee2e
+    e2ee222222222222332e33eeefffffffffffffeefffeefeeeeeeeeeeeeeee22ee2222e22222222222222222222222ee2222eee22eeeeeeeeeeeeeeefffeffffffffffffe3322e322222222222222ee2e
+    eee222222222222332e33eeeffffffffffffffeeffeeeeeeeeeeeeeeeeeee22ee2222222222222222222222222222ee2222eee22eeeeeeeeeeeeeeefffefffffffffffffe3322e322222222222222eee
+    eee222222222222322332eefffffffffffffffefffeefeeeeeeeeeeeeeeee22ee2222222222222222222222222222ee2222eee22eeeeeeeeeeeeeeeeffeefffffffffffffe3322322222222222222eee
+    ee222222222222332333eeeffffffffffffffeefffeefeeeeeeeeeeeeeee222ee22222222222222222222222222222e2222eee22eeeeeeeeeeeeeeeeffeefffffffffffffee3223322222222222222ee
+    ee22222222222332233eeefffffffffffffffeefffeefeeeeeeeeee2eeee222ee22222222222222222222222222222e2222eee22eeeeeeeeeeeeeeeeffeeffffffffffffffee322322222222222222ee
+    e22222222222332233eeeffffffffffffffffeefffeefeeeeeeeeee2eeee22eee22222222222222222222222222222e2222eee22eeeeeeeeeeeeeeeefffefffffffffffffffe3323322222222222222e
+    e22222222222332332eefffffffffffffffffeefffeefeeeeeeeeeeeeeee22eee22222222222222222222222222222e2222eeee2eeeeeeeeeeeeeeeefffeefffffffffffffffe322322222222222222e
+    22222e22222332232eeefffffffffffffffffeefffeefeeeeeeeee2eeeee22ee222222222222222222222222222222e22222eee22eeeeeeeeeeeeeeeeffeefffffffffffffffeee23322222222e22222
+    22222e2222332232eeeffffffffffffffffffeeffeefeeeeeeeeee2eeeee22ee222222222222222222222222222222e22222eee22eeeeeeeeeeeeeeeeffeeffffffffffffffffeee2322222222e22222
+    222222222332222eeeffffffffffffffffffeefffeefeeeeeeeeee2eeee222ee222222222222222222222222222222e22222eee22eeeeeeeeeeeeeeeeffeefffffffffffffffffeee332222222222222
+    2222e222233222eeefffffffffffffffffffeefffeefeeeeeeeeee2eeee222ee222222222222222222222222222222e22222eee22eeeeeeeeeeeeeeeefffeffffffffffffffffffeee322222222e2222
+    2222e222332222eeefffffffffffffffffffeefffeefeeeeeeeeee2eeee222ee222222222222222222222222222222e22222eee22eeeeeeeeeeeeeeeefffeefffffffffffffffffeee332222222e2222
+    222e222332222eeeffffffffffffffffffffeefffeefeeeeeeeee22eeee222ee222222222222222222222222222222e22222eee22eeeeeeeeeeeeeeeefffeeffffffffffffffffffeee322222222e222
+    222e22232e22eeefffffffffffffffffffffeefffeefeeeeeeeee2eeeee22eee222222222222222222222222222222222222eee22eeeeeeeeeeeeeeeeeffeefffffffffffffffffffee332e22222e222
+    222e22222e2eeeffffffffffffffffffffffeefffefeeeeeeeeee2eeeee22ee2222222222222222222222222222222222222eee22eeeeeeeeeeeeeeeeeffeeffffffffffffffffffffee32e22222e222
+    22ee2222e2eeeffffffffffffffffffffffeeffffefeeeeeeeeee2eeee222ee2222222222222222222222222222222222222eee22eeeeeeeeeeeeeeeeefffefffffffffffffffffffffee32e2222ee22
+    22e22222e2eeeffffffffffffffffffffffeeffffefeeeeeeeee22eeee222ee2222222222222222222222222222222222222eee222eeeeeeeeeeeeeeeefffeeffffffffffffffffffffee32e22222e22
+    22e2222eeeeefffffffffffffffffffffffeefffeefeeeeeeeee22eeee222ee2222222222222222222222222222222222222eee222eeeeeeeeeeeeeeeefffeefffffffffffffffffffffeeeee2222e22
+    2ee2222eeeeffffffffffffffffffffffffeefffeefeeeeeeeee22eeee222ee2222222222222222222222222222222222222eeee22e2eeeeeeeeeeeeeefffeeffffffffffffffffffffffeeee2222ee2
+    2e2222eeeefffffffffffffffffffffffffeefffefeeeeeeeeee2eeeee222ee2222222222222222222222222222222222222eeee22eeeeeeeeeeeeeeeeeffeefffffffffffffffffffffffeeee2222e2
+    2e222eee2effffffffffffffffffffffffeeefffefeeeeeeeeee2eeee222eee222e222222222222222222222222222222222eeee22ee2eeeeeeeeeeeeeefffeeffffffffffffffffffffffe2eee222e2
+    2e222eee2effffffffffffffffffffffffeeffffefeeeeeeeee22eeee222ee2222e222222222222222222222222222222222eeee22ee2eeeeeeeeeeeeeefffeeffffffffffffffffffffffe2eee222e2
+    ee22eeee2effffffffffffffffffffffffeeffffefeeeeeeeee22eeee222ee2222e2222222222222222222222222222e22222eee22ee2eeeeeeeeeeeeeefffeeffffffffffffffffffffffe2eeee22ee
+    ee22eee22effffffffffffffffffffffffeeffffefeeeeeeeee22eeee222ee2222e2222222222222222222222222222e22222eee22ee2eeeeeeeeeeeeeefffeeffffffffffffffffffffffe22eee22ee
+    eeeeee22eeffffffffffffffffffffffffeeffffeeeeeeeeeee22eeee222ee2222e2222222222222222222222222222e22222eee22ee2eeeeeeeeeeeeeeeffeeffffffffffffffffffffffee22eeeeee
+    eeeee222efffffffffffffffffffffffffeeffffeeeeeeeeeee2eeeee222ee2222e2222222222222222222222222222e22222eee222e22eeeeeeeeeeeeeefffeeffffffffffffffffffffffe222eeeee
+    2222222eeffffffffffffffffffffffffeeefffeeeeeeeeeee22eeee2222ee2222e2222222222222222222222222222e22222eee222e22eeeeeeeeeeeeeefffeeffffffffffffffffffffffee2222222
+    222222eefffffffffffffffffffffffffeeffffeeeeeeeeeee22eeee2222e22222e2222222222222222222222222222e22222eee222ee2eeeeeeeeeeeeeefffeefffffffffffffffffffffffee222222
+    22222eeefffffffffffffffffffffffffeeffffeeeeeeeeeee22eeee222ee22222e2222222222222222222222222222e22222eeee22ee2eeeeeeeeeeeeeeeffeefffffffffffffffffffffffeee22222
+    222eeeeefffffffffffffffffffffffffeeffffeeeeeeeeeee22eeee222ee22222e2222222222222222222222222222e22222eeee22ee2eeeeeeeeeeeeeeefffeeffffffffffffffffffffffeeeee222
+    eeee2eeeeffffffffffffffffffffffffeeffffeeeeeeeeee22eeeee222ee2222ee2222222222222222222222222222e22222eeee22ee2eeeeeeeeeeeeeeefffeefffffffffffffffffffffeeee2eeee
+    222e2ee2effffffffffffffffffffffffeeffffeeeeeeeeee22eeee2222ee2222ee2222222222222222222222222222e22222eeee22ee22eeeeeeeeeeeeeefffeefffffffffffffffffffffe2ee2e222
+    222e2ee2efffffffffffffffffffffffeeeffffeeeeeeeeee22eeee2222ee2222ee2222222222222222222222222222e22222eeee22ee22eeeeeeeeeeeeeefffeefffffffffffffffffffffe2ee2e222
+    222e2ee2efffffffffffffffffffffffeefffffeeeeeeeeee22eeee2222ee2222ee2222222222222222222222222222e22222eeee222e22eeeeeeeeeeeeeeffffeeffffffffffffffffffffe2ee2e222
+    222e2ee2efffffffffffffffffffffffeefffffeeeeeeeee22eeeee2222ee2222ee2222222222222222222222222222e22222eeee222e22eeeeeeeeeeeeefffffeeffffffffffffffffffffe2ee2e222
+    222e2ee22effffffffffffffffffffffeefffffeeeeeeeee22eeee22222e22222ee2222222222222222222222222222ee2222eeee222ee2eeeeeeeeeeeeeeffffeefffffffffffffffffffe22ee2e222
+    222e2ee22effffffffffffffffffffffeeffffeeeeeeeeee22eeee22222e22222ee2222222222222222222222222222ee2222eeeee22ee2eeeeeeeeeeeeeefffffefffffffffffffffffffe22ee2e222
+    222e2eee2effffffffffffffffffffffeeffffeeeeeeeeee22eeee22222e22222ee2222222222222222222222222222ee2222eeeee22ee22eeeeeeeeeeeeefffffefffffffffffffffffffe2eee2e222
+    222e22ee2eefffffffffffffffffffffefffffeeeeeeeee222eee22222ee22222ee2222222222222222222222222222ee2222eeeee22ee22eeeeeeeeeeeeeffffffffffffffffffffffffee2ee22e222
+    222e22ee22efffffffffffffffffffffefffffeeeeeeeee22eeee22222ee22222ee2222222222222222222222222222ee2222eeeee22ee22eeeeeeeeeeeeeefffffffffffffffffffffffe22ee22e222
+    222e22ee22efffffffffffffffffffffefffffeeeeeeeee22eeee22222ee22222e22222222222222222222222222222ee2222eeeee22ee22eeeeeeeeeeeeeefffffffffffffffffffffffe22ee22e222
+    222e22ee22efffffffffffffffffffffffffffeeeeeeeee22eee222222ee22222e22222222222222222222222222222ee22222eeee222e22eeeeeeeeeeeeeefffffffffffffffffffffffe22ee22e222
+    222e22ee222effffffffffffffffffffffffffeeeeeeeee22eee222222ee22222e22222222222222222222222222222ee22222eeee222ee2eeeeeeeeeeeeeeefffffffffffffffffffffe222ee22e222
+    222e22eee22effffffffffffffffffffffffffeeeeeeee22eeee222222e222222e22222222222222222222222222222ee22222eeee222ee22eeeeeeeeeeeeeefffffffffffffffffffffe22eee22e222
+    222e222ee22effffffffffffffffffffffffffeeeeeeee22eeee222222e222222e22222222222222222222222222222ee22222eeee222ee22eeeeeeeeeeeefffffffffffffffffffffffe22ee222e222
+    222e222ee22eeffffffffffffffffffffffffeeeeeeeee22eee2222222e222222ee22222eeee222eeee222eeee22222ee222222eeee22222eeeeeeeeeeeeeffffffffffffffffffffffee22ee222e222
+    222e222ee222efffffffbffffffffbbbfffffbbeeeeebeeeeeeee222eebeeeeeeddeeeeeeedeeeeeeeeeeeedeeeeeeeddeeeeeebeee22eeeeeeeebeeeeebbfffffbbbffffffffbfffffe222ee222e222
+    222e222ee222ebbfffbbbbbfffffbbbbbbbbbbbbbbbbbbeebbbbeeeeedddeeeedddddeeeddddeeeeddeeeeddddeeedddddeeeedbbbbeeebbbbeebbbbbbbbbbbbbbbbbbfffffbbbbbfffe222ee222e222
+    222ee22ee222eebbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbddddddddddddddddddddddddddddddddddddddddddddddddddddddbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbee222ee22ee222
+    222ee22ee2222ebbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbe2222ee22ee222
+    2222e222e2222eebbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbee2222e222e2222
+    2222e222ee2222ebbbbbbbbbbbbbbbbbbbbbbbbbbbbbbddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbe2222ee222e2222
+    2222e222ee2222ebbbbbbbbbbbbbbbbbbbbbbbbbbbbddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddbbbbbbbbbbbbbbbbbbbbbbbbbbbbe2222ee222e2222
+    2222e222ee2222eebbbbbbbbbbbbbbbbbbbbbbbbbddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddbbbbbbbbbbbbbbbbbbbbbbbbbee2222ee222e2222
+    2222e2222e22e22ebbbbbbbbbbbbbbbbbbbbbbbbddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddbbbbbbbbbbbbbbbbbbbbbbbbe22e22e2222e2222
+    222222222e22e22eebbbbbbbbbbbbbbbbbbbbbbddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddbbbbbbbbbbbbbbbbbbbbbbee22e22e222222222
+    222222222e22e222ebbbbbbbbbbbbbbbbbbbbbddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddbbbbbbbbbbbbbbbbbbbbbe222e22e222222222
+    2222222222e22e22eebbbbbbbbbbbbbbbbbbbbddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddbbbbbbbbbbbbbbbbbbbbee22e22e2222222222
+    222222e222e22e222ebbbbbbbbbbbbbbbbbbbddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddbbbbbbbbbbbbbbbbbbbe222e22e222e222222
+    222222e222222e222eebbbbbbbbbbbbbbbbbbddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddbbbbbbbbbbbbbbbbbbee222e222222e222222
+    222222e2222222e222ebbbbbbbbbbbbbbbbbbddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddbbbbbbbbbbbbbbbbbbe222e2222222e222222
+    222222ee222222e222eebbbbbbbbbbbbbbbbbddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddbbbbbbbbbbbbbbbbbee222e222222ee222222
+    2222222e222222e2222ebbbbbbbbbbbbbbbbbbddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddbbbbbbbbbbbbbbbbbbe2222e222222e2222222
+    22222e2e2222222e222eebbbbbbbbbbbbbbbbbddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddbbbbbbbbbbbbbbbbbee222e2222222e2e22222
+    22222e2e2222222e222eebbbbbbbbbbbbbbbbbbddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddbbbbbbbbbbbbbbbbbbee222e2222222e2e22222
+    22222e2e22222222e22ebbbbbbbbbbbbbbbbbbbbddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddbbbbbbbbbbbbbbbbbbbbe22e22222222e2e22222
+    22222e2ee2222222e22ebbbbbbbbbbbbbbbbbbbbbddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddbbbbbbbbbbbbbbbbbbbbbe22e2222222ee2e22222
+    22222e2ee2222222eeeebbbbbbbbbbbbbbbbbbbbbbbddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddbbbbbbbbbbbbbbbbbbbbbbbeeee2222222ee2e22222
+    22222e22e2222222eeebbbbbbbbbbbbbbbbbbbbbbbbbbddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddbbbbbbbbbbbbbbbbbbbbbbbbbbeee2222222e22e22222
+    22222ee2e2222222eebbbbbbbbbbbbbbbbbbbbbbbbbbbbbddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddbbbbbbbbbbbbbbbbbbbbbbbbbbbbbee2222222e2ee22222
+    22222ee2e222222eebbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbee222222e2ee22222
+    222222e2ee22222ebbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbddddddddddddddddddddddddddddddddddddddddddddddddddddddbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbe22222ee2e222222
+    222222e22e2222eebbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbddddddddddddddddddddddddddddddddddddddddddddddbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbee2222e22e222222
+    222222e22e22eeebbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbddddddddddddddddddddddddddddddddddbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbeee22e22e222222
+    222222e2eeeeebbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbeeeee2e222222
+    222222e2ebbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbe2e222222
+    222222eeebbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbeee222222
+    `)
+let myTextSprite5 = fancyText.create("CREDITS", 150, 1, customFont.Bold_Sans)
+myTextSprite5.setPosition(116, 18)
 pause(500)
+let myTextSprite6 = fancyText.create("ART", 100, 10, fancyText.rounded_large)
+story.printText("Head Artist: Luke(Richard, Luke)---Converted Images: https://kristianpedersen.github.io/Convert-Image-to-MakeCode-Arcade-Sprite/---TV image: ShutterStock 1502125139", 0, 0, 7, 4, story.TextSpeed.VeryFast)
+myTextSprite6.setPosition(13, 21)
+myTextSprite6.setBounceOnWall(true)
+myTextSprite6.ay = 23
+myTextSprite6.setVelocity(-200, 60)
+myTextSprite5.ay = 56
 music.stopAllSounds()
-pause(12000)
 music.stopAllSounds()
 sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
 sprites.destroyAllSpritesOfKind(SpriteKind.Projectile)
+music.stopAllSounds()
 timer.background(function () {
     music.play(music.stringPlayable(music.convertRTTTLToMelody("mission:d=4,o=6,b=100:32d,32d#,32d,32d#,32d,32d#,32d,32d#,32d,32d,32d#,32e,32f,32f#,32g,16g,8p,16g,8p,16a#,16p,16c7,16p,16g,8p,16g,8p,16f,16p,16f#,16p,16g,8p,16g,8p,16a#,16p,16c7,16p,16g,8p,16g,8p,16f,16p,16f#,16p,16a#,16g,2d,32p,16a#,16g,2c#,32p,16a#,16g,2c,16p,16a#5,16c"), 120), music.PlaybackMode.UntilDone)
 })
-let myTextSprite5 = fancyText.create("CREDITS     ART: Head Artist: Luke(Richard, Luke)     Converted Images: https://kristianpedersen.github.io/Convert-Image-to-MakeCode-Arcade-Sprite/     TV image: ShutterStock 1502125139          MUSIC: Head of Music: InvaildProject(Fossil Falls)     Mission Impossible RTTTL: https://github.com/dhylands/upy-rtttl/blob/master/songs.py           EXTENSIONS: Fancy Text by ricknoll     pxt-zoom by kiwiphoenix364               FEEDBACK: FutureKnight12 and Sarge", 150, 9, fancyText.rounded_small)
-myTextSprite5.setPosition(80, 100)
-myTextSprite5.vy = -10

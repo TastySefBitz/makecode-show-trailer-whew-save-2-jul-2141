@@ -10,7 +10,8 @@
         "Color Fading": "github:jwunderl/pxt-color#v0.2.3",
         "pxt-rtttl": "github:pelikhan/pxt-rtttl#v0.0.12",
         "Timers": "github:microsoft/arcade-timers#v1.1.0",
-        "arcade-story": "github:microsoft/arcade-storytelling#v1.0.3"
+        "arcade-story": "github:microsoft/arcade-storytelling#v1.0.3",
+        "Bold Sans (font)": "pub:06912-32372-46272-19506"
     },
     "files": [
         "main.blocks",
